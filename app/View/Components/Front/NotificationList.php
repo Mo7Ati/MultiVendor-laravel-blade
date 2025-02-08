@@ -18,8 +18,6 @@ class NotificationList extends Component
     {
         $user = Auth::user();
         $this->notifications = $user->notifications;
-       
-
         $this->newCount = $user->unreadNotifications->count();
     }
 

@@ -29,7 +29,7 @@ class OrderCreated extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database', 'broadcast'];
+        return ['broadcast', 'database'];
     }
 
     /**
@@ -65,10 +65,6 @@ class OrderCreated extends Notification
             'url' => 'dashboard.',
             'order_id' => $this->order->id,
         ]);
-
- 
-
-
     }
 
     /**

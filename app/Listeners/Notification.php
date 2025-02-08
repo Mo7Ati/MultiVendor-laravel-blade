@@ -25,7 +25,7 @@ class Notification
      */
     public function handle(OrderCreated $event): void
     {
-        $user = User::find(1);
+        $user = Admin::find(1);
         $user->notify(new NotificationOrderCreated($event->order));
     }
 }

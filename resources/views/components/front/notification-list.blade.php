@@ -8,10 +8,10 @@
         @foreach ($notifications as $notification)
             <div class="dropdown-divider "></div>
             <a href="{{ route($notification->data['url'], ['notification_id' => $notification->id]) }}"
-                class="dropdown-item  
-                @if ($notification->unread()) text-bold  @endif">
+                class="dropdown-item
+                @if ($notification->unread()) text-bold @endif">
                 <i class="fas
-                fa-envelope mr-2"></i> {{ $notification->data['body'] }}
+                fa-envelope mr-2"></i> {{ Str::words($notification->data['body'], 5) }}
                 <span
                     class="float-right text-muted text-sm">{{ $notification->created_at->shortAbsoluteDiffForHumans() }}</span>
             </a>

@@ -18,6 +18,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    <script>
+        const userId = {{ Auth::id() }};
+    </script>
+    @vite('resources/js/echo.js')
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -293,8 +297,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
+
     <!-- Connect Pusher With The Client Side << DONT FORGET THE GUARDS >>  ...  -->
-    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    {{-- <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script>
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
@@ -317,8 +322,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         channel.bind('Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', function(data) {
             window.alert(data.body);
         });
-    </script>
-
+    </script> --}}
 
 </body>
 
