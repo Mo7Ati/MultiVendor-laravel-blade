@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'provider',
+        'provider_id',
+        'provider_token',
     ];
 
     /**
@@ -31,6 +34,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'provider_token',
     ];
 
     /**
@@ -50,7 +54,4 @@ class User extends Authenticatable
     {
         return $this->morphToMany(Role::class, 'authorizable', 'role_users');
     }
-
-    
-
 }

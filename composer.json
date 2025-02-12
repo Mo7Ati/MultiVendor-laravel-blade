@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.9",
         "laravel/fortify": "^1.24",
         "laravel/framework": "^11.9",
+        "laravel/socialite": "^5.17",
         "laravel/tinker": "^2.9",
         "laravel/vonage-notification-channel": "^3.3",
         "mbezhanov/faker-provider-collection": "^2.0",
