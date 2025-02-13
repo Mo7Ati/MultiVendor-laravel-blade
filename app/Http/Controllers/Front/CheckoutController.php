@@ -38,6 +38,8 @@ class CheckoutController extends Controller
      */
     public function store(Request $request, CartRepository $cart)
     {
+
+       
         DB::beginTransaction();
         try {
             $items = $cart->get()->groupby('Product.store_id');
