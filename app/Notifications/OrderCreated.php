@@ -12,7 +12,7 @@ use Illuminate\Notifications\Notification;
 
 class OrderCreated extends Notification
 {
-    use Queueable;
+    // use Queueable;   
     public $order;
     /**
      * Create a new notification instance.
