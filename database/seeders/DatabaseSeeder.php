@@ -1,6 +1,6 @@
 <?php
-
 namespace Database\Seeders;
+
 
 use App\Models\Admin;
 use App\Models\Category;
@@ -19,17 +19,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::factory(10)->create();
         Category::factory(5)->create();
-        Store::factory(10)->create();
-        Product::factory(20)->create();
-
-
-        // User::factory()->create([
-        //     'name' => 'Dawly',
-        //     'email' => 'dawly@ps.com',
-        //     'password' => Hash::make('password'),
-        // ]);
+        Store::factory(7)->create();
+        Product::factory(10)->create();
 
         Admin::factory()->create([
             'name' => 'Admin',
@@ -37,6 +30,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'username' => 'Mo7Dawly',
             'phone_number' => '0592381441',
+            'super_admin' => 1,
         ]);
     }
 }
