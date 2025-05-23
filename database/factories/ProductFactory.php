@@ -24,7 +24,7 @@ class ProductFactory extends Factory
 
         return [
             'name' => $faker->unique()->productName,
-            'image' => 'https://www.incathlab.com/images/products/default_product.png',
+            'image' => "https://www.fraction9coffee.com/cdn/shop/t/23/assets/placeholder_1080x.png?v=113555733946226816651714543406",
             'description' => $faker->words(2, true),
             'status' => 'active',
             'quantity' => $faker->numberBetween(50, 100),

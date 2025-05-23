@@ -23,7 +23,7 @@ class StoreFactory extends Factory
         return [
             'name' => $faker->unique()->department,
             'description' => $faker->sentences(1, true),
-            'logo_image' => 'https://www.incathlab.com/images/products/default_product.png',
+            'logo_image' => fake()->imageUrl,
             'status' => 'active',
         ];
     }

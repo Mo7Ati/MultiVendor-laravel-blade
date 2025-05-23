@@ -9,14 +9,24 @@ use App\Models\Order;
 use App\Models\orderItems;
 use App\Repositries\Cart\CartModelRepository;
 use App\Repositries\Cart\CartRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Http;
+use Laravel\Cashier\Cashier;
+use Stripe\Stripe;
+use Stripe\StripeClient;
 
 class CheckoutController extends Controller
 {
+
+    public function __construct()
+    {
+
+    }
     /**
      * Display a listing of the resource.
      */
@@ -38,18 +48,21 @@ class CheckoutController extends Controller
      */
     public function store(Request $request, CartRepository $cart)
     {
-
-       
         DB::beginTransaction();
         try {
             $items = $cart->get()->groupby('Product.store_id');
+
             foreach ($items as $store_id => $carts) {
+
+                $total = $carts->sum(fn($cart) => $cart->quantity * $cart->product->price);
                 $order = Order::create([
                     'store_id' => $store_id,
                     'user_id' => Auth::id(),
                     'status' => 'pending',
                     'payment_method' => 'COD',
+                    'total' => $total,
                 ]);
+                //   dd($total);
                 foreach ($carts as $cart) {
                     orderItems::create([
                         'order_id' => $order->id,
@@ -59,7 +72,12 @@ class CheckoutController extends Controller
                         'product_name' => $cart->product->name,
                     ]);
                 }
-                foreach ($request->post('address') as $type => $address) {
+
+                if ($request->has('same_address') && $request->post('same_address') === "on") {
+                    $addresses = $request->post('address');
+                    $addresses['shipping'] = $addresses['billing'];
+                }
+                foreach ($addresses as $type => $address) {
                     $address['type'] = $type;
                     $order->addresses()->create($address);
                 }
@@ -68,10 +86,11 @@ class CheckoutController extends Controller
             Db::commit();
 
         } catch (\Exception $e) {
+            DB::rollBack();
             throw $e;
         }
 
-        return redirect()->route('home');
+        return redirect()->route('payments.create', $total);
 
     }
 

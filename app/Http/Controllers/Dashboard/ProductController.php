@@ -56,11 +56,9 @@ class ProductController extends Controller
         $data = $request->except(['image', 'tags']);
 
         if ($request->hasFile('image')) {
-
             $file = $request->file('image');
             $path = $file->store('uploads/products', 'public');
             $data['image'] = $path;
-
         }
 
         $product = Product::create($data);

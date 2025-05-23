@@ -15,7 +15,7 @@
                              <li>
                                  <h6 class="title" data-bs-toggle="collapse" data-bs-target="#collapseThree"
                                      aria-expanded="true" aria-controls="collapseThree">Your Personal Details </h6>
-                                 <form action="{{ route('check-out.store') }}" method="POST">
+                                 <form action="{{ route('checkout.store') }}" method="POST">
                                      @csrf
                                      <section class="checkout-steps-form-content collapse show" id="collapseThree"
                                          aria-labelledby="headingThree" data-bs-parent="#accordionExample">
@@ -92,23 +92,23 @@
                                              </div>
                                              <div class="col-md-12">
                                                  <div class="single-checkbox checkbox-style-3">
-                                                     <input type="checkbox" id="checkbox-3" value="true">
+                                                     <input type="checkbox" id="checkbox-3" name="same_address">
                                                      <label for="checkbox-3"><span></span></label>
                                                      <p>My delivery and mailing addresses are the same.</p>
                                                  </div>
                                              </div>
                                              <div class="col-md-12">
                                                  <div class="single-form button">
-                                                     <button class="btn" data-bs-toggle="collapse" type="submit"
-                                                         data-bs-target="#collapseFour" aria-expanded="false"
-                                                         aria-controls="collapseFour">next
-                                                         step</button>
+                                                     <button class="btn" data-bs-toggle="collapse" type="button"
+                                                         id="next-step" data-bs-target="#collapseFour"
+                                                         aria-expanded="false" aria-controls="collapseFour"> Countinue
+                                                     </button>
                                                  </div>
                                              </div>
                                          </div>
                                      </section>
                              </li>
-                             <li>
+                             <li id="shipping-address">
                                  <h6 class="title collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour"
                                      aria-expanded="false" aria-controls="collapseFour">Shipping Address</h6>
                                  <section class="checkout-steps-form-content collapse" id="collapseFour"
@@ -189,7 +189,7 @@
                                                      Option</h6>
                                                  <div class="payment-option-wrapper">
                                                      <div class="single-payment-option">
-                                                         <input type="radio" name="shipping" checked
+                                                         <input type="radio" name="shipping"
                                                              id="shipping-1">
                                                          <label for="shipping-1">
                                                              <img src="https://via.placeholder.com/60x32"
@@ -232,63 +232,13 @@
                                              <div class="steps-form-btn button">
                                                  <button class="btn" data-bs-toggle="collapse" type="submit"
                                                      data-bs-target="#collapseThree" aria-expanded="false"
-                                                     aria-controls="collapseThree"> Save & Continue</button>
-
+                                                     aria-controls="collapseThree">Pay Now
+                                                 </button>
                                              </div>
                                          </div>
                                      </div>
                                  </section>
                                  </form>
-                             </li>
-                             <li>
-                                 <h6 class="title collapsed" data-bs-toggle="collapse" data-bs-target="#collapsefive"
-                                     aria-expanded="false" aria-controls="collapsefive">Payment Info</h6>
-                                 <section class="checkout-steps-form-content collapse" id="collapsefive"
-                                     aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                                     <div class="row">
-                                         <div class="col-12">
-                                             <div class="checkout-payment-form">
-                                                 <div class="single-form form-default">
-                                                     <label>Cardholder Name</label>
-                                                     <div class="form-input form">
-                                                         <input type="text" placeholder="Cardholder Name">
-                                                     </div>
-                                                 </div>
-                                                 <div class="single-form form-default">
-                                                     <label>Card Number</label>
-                                                     <div class="form-input form">
-                                                         <input id="credit-input" type="text"
-                                                             placeholder="0000 0000 0000 0000">
-                                                         <img src="assets/images/payment/card.png" alt="card">
-                                                     </div>
-                                                 </div>
-                                                 <div class="payment-card-info">
-                                                     <div class="single-form form-default mm-yy">
-                                                         <label>Expiration</label>
-                                                         <div class="expiration d-flex">
-                                                             <div class="form-input form">
-                                                                 <input type="text" placeholder="MM">
-                                                             </div>
-                                                             <div class="form-input form">
-                                                                 <input type="text" placeholder="YYYY">
-                                                             </div>
-                                                         </div>
-                                                     </div>
-                                                     <div class="single-form form-default">
-                                                         <label>CVC/CVV <span><i
-                                                                     class="mdi mdi-alert-circle"></i></span></label>
-                                                         <div class="form-input form">
-                                                             <input type="text" placeholder="***">
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                                 <div class="single-form form-default button">
-                                                     <button class="btn">pay now</button>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                     </div>
-                                 </section>
                              </li>
                          </ul>
                      </div>
@@ -347,5 +297,23 @@
          </div>
      </section>
      <!--====== Checkout Form Steps Part Ends ======-->
+
+     <script>
+         let input = document.querySelector("#checkbox-3");
+         input.addEventListener('click', function($e) {
+             let shippingAddress = document.querySelector("#shipping-address");
+             shippingAddress.style.display = this.checked ? 'none' : 'block';
+
+             let nextStepButton = document.querySelector("#next-step");
+
+             let target = this.checked ? 'submit' : 'button';
+             nextStepButton.setAttribute('type', target);
+             nextStepButton.textContent = this.checked ? "Pay Now" : "Countinue"
+             this.checked ? nextStepButton.setAttribute('data-bs-target', '#collapsefive') : nextStepButton
+                 .setAttribute('data-bs-target', '#collapseFour');
+             this.checked ? nextStepButton.setAttribute('aria-controls', 'collapsefive') : nextStepButton
+                 .setAttribute('aria-controls', 'collapseFour');
+         });
+     </script>
 
  </x-front-layout>

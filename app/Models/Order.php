@@ -12,6 +12,7 @@ class Order extends Model
         'user_id',
         'number',
         'status',
+        'total',
         'payment_status',
         'payment_method',
     ];
@@ -50,9 +51,9 @@ class Order extends Model
         $last_order = Order::latest('id')->whereYear('created_at', $year)->first();
 
         if (!$last_order) {
-            return "$year" . '001';
+            return "$year" . '0001';
         }
         return $last_order->number + 1;
     }
-    
+
 }

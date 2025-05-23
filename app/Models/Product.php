@@ -38,7 +38,7 @@ class Product extends Model
             ->withDefault(['name' => 'No Category']);
     }
 
-    public function getImageUrlAttribute($key)
+    public function getImageUrlAttribute()
     {
         $image = $this->image;
         if (!$image) {
@@ -65,5 +65,5 @@ class Product extends Model
     public function orders(){
         return $this->belongsToMany(Order::class , 'order_items' , 'product_id' , 'order_id');
     }
-    
+
 }

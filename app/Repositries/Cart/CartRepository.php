@@ -15,6 +15,7 @@ interface CartRepository
     public function delete(Product $product);
 
     public function empty();
+    public function total();
 
 
 }

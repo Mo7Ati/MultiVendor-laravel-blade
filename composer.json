@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.9",
+        "laravel/cashier": "^15.6",
         "laravel/fortify": "^1.24",
         "laravel/framework": "^11.9",
         "laravel/socialite": "^5.17",
@@ -14,7 +15,7 @@
         "laravel/vonage-notification-channel": "^3.3",
         "mbezhanov/faker-provider-collection": "^2.0",
         "pusher/pusher-php-server": "^7.2",
-        "stripe/stripe-php": "^16.3"
+        "stripe/stripe-php": "^16.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

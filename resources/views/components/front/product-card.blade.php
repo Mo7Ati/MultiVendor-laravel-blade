@@ -6,7 +6,6 @@
                 <img src="{{ $product->image_url }}" alt="#">
                 <span class="sale-tag">-25%</span>
                 <div class="button">
-
                     <form action="{{ route('cart.store') }}" method="post">
                         @csrf
                         <input type="text" name="product_id" value="{{ $product->id }}" hidden>

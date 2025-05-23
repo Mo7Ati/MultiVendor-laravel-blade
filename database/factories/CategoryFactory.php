@@ -14,7 +14,7 @@ class CategoryFactory extends Factory
      * Define the model's default state.
      *
      * @return array<string, mixed>
-     * 
+     *
      */
     public function definition(): array
     {
@@ -22,9 +22,9 @@ class CategoryFactory extends Factory
         ProviderCollectionHelper::addAllProvidersTo($faker);
 
         return [
-            'name' => $faker->unique()->category,
+            'name' => $faker->category,
             'description' => $faker->sentences(1, true),
-            'image' => 'https://www.incathlab.com/images/products/default_product.png',
+            'image' => fake()->imageUrl,
             'status' => 'active',
         ];
     }

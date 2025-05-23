@@ -55,4 +55,13 @@ class CartModelRepository implements CartRepository
         $cart = Cart::query()->delete();
     }
 
+    public function total()
+    {
+        $total = 0;
+        foreach ($this->get() as $item) {
+            $total += ( $item->quantity * $item->product->price);
+        }
+        return $total;
+    }
+
 }

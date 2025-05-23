@@ -36,7 +36,7 @@
             <span class="total-amount">$134.00</span>
         </div>
         <div class="button">
-            <a href="{{ route('check-out.index') }}" class="btn animate">Checkout</a>
+            <a href="{{ route('checkout.index') }}" class="btn animate">Checkout</a>
         </div>
     </div>
 </div>

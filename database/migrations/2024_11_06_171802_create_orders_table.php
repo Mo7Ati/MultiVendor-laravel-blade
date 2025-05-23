@@ -23,8 +23,8 @@ return new class extends Migration {
                 'payment_status',
                 ['pending', 'paid', 'failed']
             )->default('pending');
-            $table->string('payment_method'); 
-            
+            $table->string('payment_method');
+            $table->float('total');
             $table->timestamps();
         });
     }

@@ -17,12 +17,6 @@ return [
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
-
-    'stripe' => [
-        'publishable_key' => env('STRIPE_PUBLISHABLE_KEY'),
-        'secret_key' => env('STRIPE_SECRET_KEY'),
-    ],
-
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
@@ -44,4 +38,9 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => 'http://localhost:8000/auth/google/callback',
     ],
+    'stripe' => [
+        'publishable_key' => env('STRIPE_PUBLISHABLE_KEY'),
+        'secret_key' => env('STRIPE_SECRET_KEY'),
+    ],
+
 ];
