@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('parent_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->string('name')->unique();
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->text('image')->nullable();
             $table->text('description')->nullable();
             $table->enum('status', ['active', 'archived'])
